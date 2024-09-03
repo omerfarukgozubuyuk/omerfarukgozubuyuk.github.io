@@ -325,3 +325,41 @@
   });
 
 })()
+
+document.querySelectorAll(".open-iframe").forEach(function(element) {
+  element.addEventListener("click", function(event) {
+      event.preventDefault();
+
+      var videoID = this.getAttribute("data-video-id");
+      var container = this.closest('.image-container');
+
+      var existingIframe = container.querySelector("iframe");
+      if (existingIframe) {
+          existingIframe.remove();
+      }
+
+      if (videoID) {
+          // Create a new iframe
+          var iframe = document.createElement("iframe");
+          iframe.src = "https://www.youtube.com/embed/" + videoID + "?autoplay=1"; // Added autoplay parameter
+          iframe.frameBorder = "0";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.referrerPolicy = "strict-origin-when-cross-origin";
+          iframe.allowFullscreen = true;
+          iframe.style.width = "560px";  
+          iframe.style.height = "315px";
+          iframe.style.display = "block"; 
+
+          container.appendChild(iframe);
+
+          var images = container.querySelectorAll("img");
+          images.forEach(function(img) {
+              img.style.display = "none";
+          });
+      }
+  });
+});
+
+
+
+

@@ -31,7 +31,7 @@
 
 </head>
 
-<body>
+<body onload="checkAndRedirect()">
 
   <!-- ======= Header ======= -->
   <header id="header">
@@ -282,7 +282,7 @@
         <h2>Testimonials</h2>
       </div>
 
-      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="5000">
         <div class="swiper-wrapper">
 
           <div class="swiper-slide">
@@ -377,13 +377,12 @@
 
         </div>
         <div class="swiper-pagination"></div>
-      </div>
 
-      <div class="owl-carousel testimonials-carousel">
+        <div class="owl-carousel testimonials-carousel">
 
-      </div>
+        </div>
 
-    </div><!-- End Testimonials  -->
+      </div><!-- End Testimonials  -->
 
   </section>
   <!-- End About Section -->
@@ -398,14 +397,24 @@
       </div>
 
       <div class="row">
+        <!-- <iframe src="https://docs.google.com/document/d/1MGrBcgzN9J1I7pA-ag7GlQZZaJFhpBXgBm5Gsxn9sdw/pub?embedded=true"
+          class="iframe-resume"></iframe> -->
+        <em><a href="https://docs.google.com/document/d/1MGrBcgzN9J1I7pA-ag7GlQZZaJFhpBXgBm5Gsxn9sdw/"
+            data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="" title="Portfolio Details"
+            style="color: aquamarine;" target="_blank"><i class="bx bx-link"></i>Resume.pdf</a></em>
+        <iframe src="resume.html" class="iframe-resume"></iframe>
+
+        <!-- <div id="content"></div> -->
+        <!-- 
         <div class="col-lg-6">
           <h3 class="resume-title">
             <em><a href="https://docs.google.com/document/d/1MGrBcgzN9J1I7pA-ag7GlQZZaJFhpBXgBm5Gsxn9sdw/"
                 data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class=""
                 title="Portfolio Details" style="color: aquamarine;" target="_blank"><i
                   class="bx bx-link"></i>Resume.pdf</a></em>
-          </h3>
-          <div class="resume-item pb-0">
+          </h3> -->
+
+        <!-- <div class="resume-item pb-0">
             <h4>Ömer Faruk Gözübüyük</h4>
             <p>
             </p>
@@ -415,14 +424,14 @@
               <li>omerfarukgozubuyuk34@gmail.com</li>
             </ul>
             </p>
-          </div>
+          </div> -->
 
-          <!-- <h3 class="resume-title">Education</h3>
+        <!-- <h3 class="resume-title">Education</h3>
           <p><em>I did not attend university. Instead, I started my career in the game industry as an intern during high
               school and have continued to work in this field ever since</em></p> -->
 
-        </div>
-        <!-- <div class="col-lg-6">
+      </div>
+      <!-- <div class="col-lg-6">
           <h3 class="resume-title">Professional Experience</h3>
           <div class="resume-item">
             <h4>Game Developer <span style=" color: azure; text-transform: none; font-size: 16px;">at Oxo Games</span>
@@ -477,7 +486,7 @@
             </p>
           </div>
         </div> -->
-      </div>
+    </div>
 
     </div>
   </section><!-- End Resume Section -->
@@ -1071,7 +1080,13 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script>
+    function checkAndRedirect() {
+      if (!window.location.hash) {
+        window.location.hash = "#about";
+      }
+    }
+  </script>
 
 </body>
 

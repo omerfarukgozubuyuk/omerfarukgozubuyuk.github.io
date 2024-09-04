@@ -1,4 +1,3 @@
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -59,7 +58,7 @@ h6 {
   align-items: center;
   z-index: 997;
   overflow-y: auto;
-  
+
   /* background-color: rgba(0, 0, 0, 0.9); */
 }
 
@@ -1184,10 +1183,11 @@ section .container {
   color: #fff;
 }
 
-.iframe-portfolio{
+.iframe-portfolio {
   width: 100%;
   height: 350px;
 }
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -1204,10 +1204,66 @@ section .container {
   pointer-events: none;
 }
 
-.main-image {
-  
+
+.iframe-portfolio-hide {
+  display: none;
 }
 
-.iframe-portfolio-hide{
-  display: none;
+.iframe-resume {
+  width: 100%;
+  height: 150vh;
+  border: 0px;
+}
+
+@media (max-width: 1200px) {
+  .iframe-resume {
+    height: 160vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .iframe-resume {
+    height: 170vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .iframe-resume {
+    height: 180vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .iframe-resume {
+    height: 190vh;
+  }
+}
+@media (max-width: 480px) {
+  .iframe-resume {
+    height: 230vh;
+  }
+}
+
+@media (max-width: 400px) {
+  .iframe-resume {
+    height: 250vh;
+  }
+}
+
+@media (max-width: 360px) {
+  .iframe-resume {
+    height: 280vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .iframe-resume {
+    height: 290vh;
+  }
+}
+
+@media (max-width: 280px) {
+  .iframe-resume {
+    height: 300vh;
+  }
 }

@@ -150,33 +150,48 @@
     })
   }
 
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
+  document.addEventListener('DOMContentLoaded', () => {
+    const testimonialsSlider = document.querySelector('.testimonials-slider');
 
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          swiper.autoplay.start();
+        } else {
+          swiper.autoplay.stop();
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    observer.observe(testimonialsSlider);
+
+    // Swiper initialization
+    const swiper = new Swiper('.testimonials-slider', {
+      speed: 700,
+      loop: true,
+      autoplay: {
+        delay: 20000,
+        disableOnInteraction: false
+      },
+      slidesPerView: 'auto',
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 20
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        }
       }
-    }
+    });
   });
 
   /**
@@ -240,19 +255,19 @@
     }
   });
 
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     var portfolioContainer = document.querySelector('.portfolio-container');
     if (!portfolioContainer) {
       console.log('Portfolio container not found');
       return;
     }
-  
+
     var lazyIframes = Array.from(portfolioContainer.querySelectorAll("iframe"));
     console.log('Found ' + lazyIframes.length + ' iframes');
-  
+
     if ("IntersectionObserver" in window) {
-      let lazyIframeObserver = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
+      let lazyIframeObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             let lazyIframe = entry.target;
             if (lazyIframe.dataset.src) {
@@ -268,8 +283,8 @@
         rootMargin: "0px",
         threshold: 0.1
       });
-  
-      lazyIframes.forEach(function(lazyIframe) {
+
+      lazyIframes.forEach(function (lazyIframe) {
         if (lazyIframe.src) {
           lazyIframe.dataset.src = lazyIframe.src;
           lazyIframe.src = '';
@@ -280,18 +295,18 @@
     } else {
       console.log('IntersectionObserver not supported');
       // Fallback for browsers that don't support IntersectionObserver
-      lazyIframes.forEach(function(lazyIframe) {
+      lazyIframes.forEach(function (lazyIframe) {
         if (lazyIframe.dataset.src) {
           lazyIframe.src = lazyIframe.dataset.src;
         }
       });
     }
   });
-  
+
   // Function to manually trigger lazy loading
   function triggerLazyLoad() {
     var lazyIframes = document.querySelectorAll('.portfolio-container iframe[data-src]');
-    lazyIframes.forEach(function(lazyIframe) {
+    lazyIframes.forEach(function (lazyIframe) {
       if (lazyIframe.dataset.src) {
         lazyIframe.src = lazyIframe.dataset.src;
         console.log('Manually loading iframe: ' + lazyIframe.src);
@@ -299,10 +314,10 @@
       }
     });
   }
-  
+
   // Trigger lazy loading after a short delay
   setTimeout(triggerLazyLoad, 6000);
-  
+
   /**
    * Initiate Pure Counter 
    */
@@ -326,40 +341,35 @@
 
 })()
 
-document.querySelectorAll(".open-iframe").forEach(function(element) {
-  element.addEventListener("click", function(event) {
-      event.preventDefault();
+document.querySelectorAll(".open-iframe").forEach(function (element) {
+  element.addEventListener("click", function (event) {
+    event.preventDefault();
 
-      var videoID = this.getAttribute("data-video-id");
-      var container = this.closest('.image-container');
+    var videoID = this.getAttribute("data-video-id");
+    var container = this.closest('.image-container');
 
-      var existingIframe = container.querySelector("iframe");
-      if (existingIframe) {
-          existingIframe.remove();
-      }
+    var existingIframe = container.querySelector("iframe");
+    if (existingIframe) {
+      existingIframe.remove();
+    }
 
-      if (videoID) {
-          // Create a new iframe
-          var iframe = document.createElement("iframe");
-          iframe.src = "https://www.youtube.com/embed/" + videoID + "?autoplay=1"; // Added autoplay parameter
-          iframe.frameBorder = "0";
-          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-          iframe.referrerPolicy = "strict-origin-when-cross-origin";
-          iframe.allowFullscreen = true;
-          iframe.style.width = "560px";  
-          iframe.style.height = "315px";
-          iframe.style.display = "block"; 
+    if (videoID) {
+      // Create a new iframe
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + videoID + "?autoplay=1"; // Added autoplay parameter
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+      iframe.style.width = "560px";
+      iframe.style.height = "315px";
+      iframe.style.display = "block";
 
-          container.appendChild(iframe);
+      container.appendChild(iframe);
 
-          var images = container.querySelectorAll("img");
-          images.forEach(function(img) {
-              img.style.display = "none";
-          });
-      }
+      var images = container.querySelectorAll("img");
+      images.forEach(function (img) {
+        img.style.display = "none";
+      });
+    }
   });
 });
-
-
-
-

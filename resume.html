@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        #content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .resume-content {
+            width: 100%;
+            height: auto;
+            background-color: #00000000 !important;
+            padding: 20px !important;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .resume-content>p {
+            padding: 3px !important;
+            margin: 0;
+        }
+
+        .resume-info {
+            color: rgb(240, 240, 240) !important;
+        }
+
+        .resume-link {
+            color: rgb(114, 154, 225) !important;
+        }
+
+        @media (max-width: 768px) {
+            .resume-content {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resume-content {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <script>
+        const targetUrl = 'https://docs.google.com/document/d/1MGrBcgzN9J1I7pA-ag7GlQZZaJFhpBXgBm5Gsxn9sdw/pub?embedded=true';
+
+        const proxyUrl = 'https://rucesocial.com/cors.php';
+
+        fetch(`${proxyUrl}?url=${encodeURIComponent(targetUrl)}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+
+                // İçeriğe stil sınıfları ekleme
+                const embeddedDiv = document.querySelector('#content div');
+                if (embeddedDiv) {
+                    embeddedDiv.classList.add('resume-content');
+
+                    const spans = embeddedDiv.querySelectorAll('span');
+                    spans.forEach(span => {
+                        span.classList.add('resume-info');
+                    });
+
+                    const links = embeddedDiv.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.classList.add('resume-link');
+                    });
+                }
+            })
+            .catch(error => console.error('Error:', error));
+
+    </script>
+</body>
+
+</html>
